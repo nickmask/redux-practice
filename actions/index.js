@@ -1,22 +1,28 @@
-let nextTodoId = 0
-export const addTodo = (text) => {
+import fetch from 'isomorphic-fetch'
+
+export const REQUEST_PROJECTS = 'REQUEST_PROJECTS'
+export const RECEIVE_PROJECTS = 'RECEIVE_PROJECTS'
+
+function requestProjects() {
   return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
+    type: REQUEST_PROJECTS,
+    projects
   }
 }
 
-export const setVisibilityFilter = (filter) => {
+function receiveProjects(projects, json) {
   return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
+    type: RECEIVE_PROJECTS,
+    projects,
+    posts: json.data.children.map(child => child.data)
   }
 }
 
-export const toggleTodo = (id) => {
-  return {
-    type: 'TOGGLE_TODO',
-    id
+function fetchProjects() {
+  return dispatch => {
+    dispatch(requestPosts())
+    return fetch(`https://nickmask.firebaseio.com/projects.json`)
+      .then(response => response.json())
+      .then(json => dispatch(receiveProjects(projects, json)))
   }
 }
