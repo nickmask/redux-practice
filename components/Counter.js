@@ -53,12 +53,15 @@ Counter.propTypes = {
   decrement: PropTypes.func.isRequired
 }
 
+//what you are mapping at a prop, in my case it is a "value" or how many times you have clicked +/-
 function mapStateToProps (state) {
   return { value: state }
 }
 
+//mapping actions to props. in my case it is increment and decrement. Now I can access them through this.props.action.
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({ increment, decrement }, dispatch)
 }
 
+//the final peice of the puzzle. This connects you to your actions/state. 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
