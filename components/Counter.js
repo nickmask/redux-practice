@@ -1,12 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-<<<<<<< Updated upstream
-import { connect } from 'react-redux'
-
-=======
 import { bindActionCreators } from 'redux'
 import { increment, decrement } from '../actions/index.js'
 import { connect } from 'react-redux'
->>>>>>> Stashed changes
 
 class Counter extends Component {
   constructor(props) {
@@ -17,12 +12,12 @@ class Counter extends Component {
 
   incrementIfOdd() {
     if (this.props.value % 2 !== 0) {
-      this.props.onIncrement()
+      this.props.increment()
     }
   }
 
   incrementAsync() {
-    setTimeout(this.props.onIncrement, 1000)
+    setTimeout(this.props.decrement, 1000)
   }
 
   render() {
