@@ -10,11 +10,15 @@ let store = createStore(reducers)
 function render () {
   ReactDOM.render(
     <Provider store={store}>
+<<<<<<< Updated upstream
       <Counter
         value={store.getState()}
         onIncrement={() => store.dispatch({type: 'INCREMENT'})}
         onDecrement={() => store.dispatch({type: 'DECREMENT'})}
         />
+=======
+      <Counter/>
+>>>>>>> Stashed changes
     </Provider>,
     document.getElementById('root')
   )
