@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { increment, decrement } from '../actions/index.js'
 import { connect } from 'react-redux'
+import Reddit from './Reddit'
 
 class Counter extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Counter extends Component {
   }
 
   incrementAsync() {
-    setTimeout(this.props.decrement, 1000)
+    setTimeout(this.props.increment, 1000)
   }
 
   render() {
@@ -63,5 +64,5 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({ increment, decrement }, dispatch)
 }
 
-//the final peice of the puzzle. This connects you to your actions/state. 
+//the final peice of the puzzle. This connects you to your actions/state.
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
