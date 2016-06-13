@@ -10,7 +10,6 @@ import Reddit from './components/Reddit'
 import { Provider } from 'react-redux'
 import { fetchPostsIfNeeded } from './actions/index'
 
-
 const loggerMiddleware = createLogger()
 
 //creating the store and passing in the reducers (so it is aware of the state)

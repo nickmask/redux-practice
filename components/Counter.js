@@ -4,7 +4,7 @@ import { increment, decrement } from '../actions/index.js'
 import { connect } from 'react-redux'
 import Reddit from './Reddit'
 
-class Counter extends Component {
+export default class Counter extends Component {
   constructor(props) {
     super(props)
     this.incrementAsync = this.incrementAsync.bind(this)

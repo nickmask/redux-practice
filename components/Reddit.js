@@ -41,7 +41,7 @@ class Reddit extends Component {
       <div>
         <Picker value={selectedSubreddit}
                 onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]} />
+                options={[ 'reactjs', 'frontend', 'node', 'design' ]} />
         <p>
           {lastUpdated &&
             <span>
