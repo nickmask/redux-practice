@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { increment, decrement } from '../actions/index.js'
+import { connect } from 'react-redux'
+import Reddit from './Reddit'
 
-
-class Counter extends Component {
+export default class Counter extends Component {
   constructor(props) {
     super(props)
     this.incrementAsync = this.incrementAsync.bind(this)
@@ -10,25 +13,25 @@ class Counter extends Component {
 
   incrementIfOdd() {
     if (this.props.value % 2 !== 0) {
-      this.props.onIncrement()
+      this.props.increment()
     }
   }
 
   incrementAsync() {
-    setTimeout(this.props.onIncrement, 1000)
+    setTimeout(this.props.increment, 1000)
   }
 
   render() {
-    const { value, onIncrement, onDecrement} = this.props
+    const { value, increment, decrement} = this.props
   return (
     <p>
       Clicked: {value} times
       {' '}
-      <button onClick={onIncrement}>
+      <button onClick={increment}>
       +
       </button>
       {' '}
-      <button onClick={onDecrement}>
+      <button onClick={decrement}>
         -
       </button>
       {' '}
@@ -47,8 +50,19 @@ class Counter extends Component {
 
 Counter.propTypes = {
   value: PropTypes.number.isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired
 }
 
-export default Counter
+//what you are mapping at a prop, in my case it is a "value" or how many times you have clicked +/-
+function mapStateToProps (state) {
+  return { value: state }
+}
+
+//mapping actions to props. in my case it is increment and decrement. Now I can access them through this.props.action.
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({ increment, decrement }, dispatch)
+}
+
+//the final peice of the puzzle. This connects you to your actions/state.
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
